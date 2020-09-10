@@ -14,12 +14,12 @@ const userSchema = new Schema({
         type:Boolean,
         default: true, 
     },
-    fristName: {
+    first_name: {
         type: String,
         required: true,
         trim: true,
     },
-    lastName: {
+    last_name: {
         type: String,
         required: true,
         trim: true,
