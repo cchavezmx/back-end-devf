@@ -38,8 +38,8 @@ module.exports = {
         user.posts.push(post)
         return user.save();
     },
-    addPoll: (user, poll ) => {
+    addPoll: (user, poll) => {
         user.polls.push(poll)
-        return User.save
+        return user.save()
     }
  }

@@ -8,7 +8,7 @@ module.exports = {
 
         try {
        //buscar el usuario
-        const user =  UserService.getByID(id)
+        const user =  await UserService.getByID(id)
         if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
 
         // Guardamos el contenido de body con el esquema de la encuesta
@@ -29,20 +29,16 @@ module.exports = {
         const { id } = req.params
 
         try {
-
         // buscar el usuario
-        const user =  UserService.getByID(id)
+        const user =  await UserService.getByID(id)
         if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
-
-        // Treaer todas las preguntas por usuario
-
+         // Treaer todas las preguntas por usuario
+            console.log(user)
         const allPoll = await PollService.getByUserId(user)
         if(!allPoll) res.status(500).json({mesaage: 'Error al crear la encuesta'}); 
 
         // si todo sale bien regresamos la todas las encuestas. 
         res.status(201).json(allPoll)   
-
-
 
         } catch (error) {
             res.status(404).json({mesaage: `Error general ${error}`})  
@@ -54,7 +50,7 @@ module.exports = {
         try {
 
             // Buscamos el usuario 
-            const user =  UserService.getByID(id)
+            const user =  await UserService.getByID(id)
             if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
 
             // Buscamos el Poll por ID 

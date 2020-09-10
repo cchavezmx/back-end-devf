@@ -21,10 +21,10 @@ module.exports = {
     getById: celebrate ({
         [Segments.PARAMS]: Joi.object().keys({
             id: Joi.string().required(),
-            idPost: Joi.string().required(),
+            idPoll: Joi.string().required(),
         })
     }),
-    getAllPost: celebrate ({
+    getByUserId: celebrate ({
         [Segments.PARAMS]: Joi.object().keys({
             id: Joi.string().required(),
         })
@@ -32,13 +32,13 @@ module.exports = {
     delete: celebrate ({
         [Segments.PARAMS]: Joi.object().keys({
             id: Joi.string().required(),
-            idPost: Joi.string().required(),
+            idPoll: Joi.string().required(),
         })
     }), // para PATCH debes debemos validar tanto los params como el body tambien estos no son requeridos
     patch: celebrate ({
         [Segments.PARAMS]: Joi.object().keys({
             id: Joi.string().required(),
-            idPost: Joi.string().required(),
+            idPoll: Joi.string().required(),
         }),
         [Segments.BODY]: Joi.object().keys({
             pregunta1: Joi.string(),
@@ -54,11 +54,11 @@ module.exports = {
             permissions: Joi.string().valid('PUBLIC', 'PRIVATE')
         }),            
     }),
-    getByUserId: () => {
-
-    },
-    getByUserAndPollId: () => {
-
-    },
-    
+    getByUserAndPollId: celebrate ({
+        [Segments.PARAMS]: Joi.object().keys({
+            id: Joi.string().required(),
+            idPoll: Joi.string().required(),
+        }),
+    }),    
+        
 }

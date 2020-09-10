@@ -6,7 +6,7 @@ const { PollController } = require('../controller')
 
 
 // CRUD
-//TODO PROBAR
+
 // CREAR POLL DE USUARIO 
 router.post('/api/v1/user/:id/poll', PollValidators.create, PollController.create)
 
