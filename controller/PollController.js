@@ -33,7 +33,7 @@ module.exports = {
         const user =  await UserService.getByID(id)
         if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
          // Treaer todas las preguntas por usuario
-            console.log(user)
+
         const allPoll = await PollService.getByUserId(user)
         if(!allPoll) res.status(500).json({mesaage: 'Error al crear la encuesta'}); 
 
@@ -48,16 +48,15 @@ module.exports = {
     getByUserAndPollId: async (req, res) => {
             const { id, idPoll } = req.params
         try {
-
             // Buscamos el usuario 
             const user =  await UserService.getByID(id)
             if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
 
             // Buscamos el Poll por ID 
-            const pollId = await PollService.getByUserId(user, idPoll)
-            if(!pollId) res.status(404).json({mesaage: 'Usuario no econtrado'})
+            const pollId = await PollService.getByUserAndPollId(user, idPoll)
+            if(!pollId) res.status(404).json({mesaage: 'Poll ID no econtrado'})
 
-            res.status(200).json({ mesaage: pollId })
+            res.status(200).json(pollId)
             
         } catch (error) {
         res.status(404).json({mesaage: `Error general ${error}`})  
@@ -66,19 +65,18 @@ module.exports = {
 
     delete: async (req, res) => {
         const { id, idPoll } = req.params
-
-        try {
-            
+  
+        try {       
         // buscar el usuario
-        const user =  UserService.getByID(id)
+        const user =  await UserService.getByID(id)
         if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
 
         // Treaer todas las preguntas por usuario
-        const allPoll = await PollService.getByUserId(user, idPoll)
+        const allPoll = await PollService.getByUserAndPollId(user, idPoll)
         if(!allPoll) res.status(500).json({mesaage: 'El id de la encuesta no es el correcto'}); 
 
         // Borrado Logico para las encuesas
-        await PollService.patch(user, idPoll, { is_asctive: false })
+        await PollService.patch(user, idPoll, { is_active: false })
         
         // si todo sale bien regresamos la todas las encuestas. 
         res.status(204).json({ mesaage: 'Encuesta eliminada '})
@@ -94,21 +92,20 @@ module.exports = {
         const { body } = req
 
         try {
-
         // buscar el usuario
-        const user =  UserService.getByID(id)
+        const user =  await UserService.getByID(id)
         if(!user) res.status(404).json({mesaage: 'Usuario no econtrado'})
 
         // Treaer todas las preguntas por usuario
-        const poll = await PollService.getByUserId(user, idPoll)
+        const poll = await PollService.getByUserAndPollId(user, idPoll)
         if(!poll) res.status(500).json({mesaage: 'El id de la encuesta no es el correcto'}); 
 
-        // Guardamos las modificaciones. 
+        // Para actualizar necesitamos pasar el user, el idPoll y el body
+        const updatePoll = await PollService.patch(user, idPoll, body)
 
-        const updatePoll = await PollService.patch(user, poll, body)
+        // Retornamos solo el poll modificado
+        res.status(201).json(updatePoll.polls.id(idPoll))
 
-        res.status(201).json({updatePoll})
-            
         } catch (error) {
             res.status(404).json({mesaage: `Error general ${error}`})    
         }

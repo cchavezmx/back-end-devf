@@ -13,7 +13,6 @@ router.post('/api/v1/user/:id/poll', PollValidators.create, PollController.creat
 // SELECCIONAR EL POLL DE USUARIO 
 router.get('/api/v1/user/:id/poll/', PollValidators.getByUserId, PollController.getByUserId)
 
-//TODO revisar este control y validador 
 // SELECCIONAR POLL POR ID Y POR USUARIO
 router.get('/api/v1/user/:id/poll/:idPoll', PollValidators.getByUserAndPollId, PollController.getByUserAndPollId)
 

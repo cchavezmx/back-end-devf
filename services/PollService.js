@@ -12,8 +12,24 @@ module.exports = {
         return allPolls
     },
     getByUserAndPollId: (user, idPoll) => {
-        const pollById = user.polls.filter(poll => poll._id === idPoll)
+        const pollById = user.polls.id(idPoll)
+        if(pollById.is_active === true){
         return pollById
+        }else {
+            return false
+        }
+        
+    }, 
+    patch: (user, idPoll, body) => {
+        const updatePoll = user.polls.map(poll => {
+            if(poll._id.toString() === idPoll){
+                const update = Object.assign(poll, body)
+                return update
+            }
+            return poll 
+        })
+        user.polls = updatePoll
+        return user.save()
     }
     
 
