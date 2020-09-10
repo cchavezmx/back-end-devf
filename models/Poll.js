@@ -6,7 +6,7 @@ const { Schema } = mongoose;
 
 // Se agrega el is_active para el borrado logico de datos 
 
-const encuestaSchema = new Schema({
+const pollSchema = new Schema({
     //borrado logico 
         is_active: {
         type:Boolean,
@@ -16,35 +16,39 @@ const encuestaSchema = new Schema({
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta2: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta3: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta4: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta5: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta6: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta7: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta8: {
             type: String,
             trim: true,
         },
-        pregunta1: {
+        pregunta9: {
+            type: String,
+            trim: true,
+        },
+        pregunta10: {
             type: String,
             trim: true,
         },
@@ -59,6 +63,6 @@ const encuestaSchema = new Schema({
         },
     })
 
-const Encuesta = mongoose.model('Encuesta', encuestaSchema);
+const Poll = mongoose.model('Poll', pollSchema);
 
-module.exports = { Encuesta, encuestaSchema }
+module.exports = { Poll, pollSchema }

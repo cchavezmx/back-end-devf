@@ -8,7 +8,7 @@ module.exports = {
     comparePassword: (userPassword, reqPassword) => {
       return bcrypt.compareSync(reqPassword, userPassword)
 
-    },
+    }, // TOKEN CON CADUCIDAD DE 1 HORA 
     createToken: (user) => {
         const payload = {
             id: user._id,

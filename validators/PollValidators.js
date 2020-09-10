@@ -1,12 +1,20 @@
 const { celebrate, Joi, Segments } = require('celebrate')
 
+
+
 module.exports = {
     create: celebrate ({
         [Segments.BODY]: Joi.object().keys({
-            title: Joi.string().required(),
-            body: Joi.string().required(),
-            date: Joi.date(),
-            image: Joi.string(),
+            pregunta1: Joi.string(),
+            pregunta2: Joi.string(),
+            pregunta3: Joi.string(),
+            pregunta4: Joi.string(),
+            pregunta5: Joi.string(),
+            pregunta6: Joi.string(),
+            pregunta7: Joi.string(),
+            pregunta8: Joi.string(),
+            pregunta9: Joi.string(),
+            pregunta10: Joi.string(),
             permissions: Joi.string().valid('PUBLIC', 'PRIVATE')
         }),
     }),
@@ -33,12 +41,24 @@ module.exports = {
             idPost: Joi.string().required(),
         }),
         [Segments.BODY]: Joi.object().keys({
-            title: Joi.string(),
-            body: Joi.string(),
-            date: Joi.date(),
-            image: Joi.string(),
-            permissions: Joi.string().valid('PUBLIC', 'PRIVATE'),
+            pregunta1: Joi.string(),
+            pregunta2: Joi.string(),
+            pregunta3: Joi.string(),
+            pregunta4: Joi.string(),
+            pregunta5: Joi.string(),
+            pregunta6: Joi.string(),
+            pregunta7: Joi.string(),
+            pregunta8: Joi.string(),
+            pregunta9: Joi.string(),
+            pregunta10: Joi.string(),
+            permissions: Joi.string().valid('PUBLIC', 'PRIVATE')
+        }),            
+    }),
+    getByUserId: () => {
 
-        })
-    })
+    },
+    getByUserAndPollId: () => {
+
+    },
+    
 }

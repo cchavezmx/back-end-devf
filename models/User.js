@@ -1,7 +1,8 @@
 const mongosse = require('mongoose')
 const timestamp = require('mongoose-timestamp')
 const bcrypt = require('bcrypt')
-const { encuestaSchema } = require('./Encuesta')
+const { postSchema } = require('../models/Post')
+const { pollSchema } = require('../models/Poll')
 
 const SALT_WORK_FACTOR = 10
 const { Schema } = mongosse // con destructuracion 
@@ -35,7 +36,8 @@ const userSchema = new Schema({
         required: true,
         trim: true,
     }, // AGREGAMOS SCHEMA EMBEBIDO DE POST BASICO DESDE OTRO ARCHIVO. 
-    encuestas: [encuestaSchema],
+    polls: [pollSchema],
+    posts: [postSchema],
 });
 
 // 1) se instala npm install mongoose-timestamp

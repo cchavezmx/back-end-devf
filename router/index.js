@@ -7,14 +7,15 @@ const { verifyToken } = require('../middlewares')
 // aqui se colocan las vistas por separado de cada CRUD 
 // ahora con la expresion antes definida, usamos nuestro paquete de UserRouter
 
-// privadas
+// Rutas Publicas
 router.use(require('./UserRouter')) // <=  Para el usuario
-router.use(require('./AuthRouter')) // <=  Paora autorizar usuarios
+router.use(require('./AuthRouter')) // <=  Para autorizar usuarios
 
 
-// rutas protegidas
+// Rutas protegidas
 router.use(verifyToken) //<= Con esto todas las rutas listadas mas abajo se van a proteger
 router.use(require('./PostRouter')) // <=  Para crear Post
+router.use(require('./PollRouter')) // <== para las Encuestas
 
 
 module.exports = router;

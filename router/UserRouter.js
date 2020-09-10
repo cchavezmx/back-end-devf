@@ -8,6 +8,7 @@ router.use(express.json({ extended: true }));
 const { UserValidator } = require('../validators')
 const { UserController } = require('../controller/')
 
+//TODO TERMINAR LOS VALIDADORES
 
 // Vista de Rutas
 router.get('/api/v1/user/', UserController.get)

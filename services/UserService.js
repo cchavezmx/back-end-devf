@@ -37,5 +37,9 @@ module.exports = {
     addPost: (user, post) => {
         user.posts.push(post)
         return user.save();
+    },
+    addPoll: (user, poll ) => {
+        user.polls.push(poll)
+        return User.save
     }
  }

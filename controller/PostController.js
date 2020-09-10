@@ -7,6 +7,7 @@ module.exports = {
 try {    
         // 1) traer usuario
         const user = await UserService.getByID(id)
+            if(!user) res.status(404).json({message: 'Usuario no encontrado'})
 
         // 2) crear objeto de post
         const post = PostService.create(body)
