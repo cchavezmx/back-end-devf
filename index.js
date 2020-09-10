@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { app, PORT } = require('./api')
-const { MONGO_URI } = require('./config')  // Aqui por medio de destruccturacion accedemos al metodo MONO_URI 
+const { MONGO_URI } = require('./config')  // Aqui por medio de destruccturacion accedemos al metodo MONGO_URI 
 const  mongoose  = require('mongoose')
 
 //mongoose CONNECT

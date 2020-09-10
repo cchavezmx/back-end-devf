@@ -14,18 +14,18 @@ module.exports = {
         return newPost
     },
     getById: (user, idPost) => {
-        const post = user.posts.id(idPost) // <= Atributos de Objeto 
+        const post = user.encuestas.id(idPost) // <= Atributos de Objeto 
             if(post.is_active === false){
                 return false
             }else
            return post
     },
     getAllPost: (user) => {
-        const allPost = user.posts.filter((post) => post.is_active === true)
+        const allPost = user.encuestas.filter((post) => post.is_active === true)
         return allPost 
     },
     delete: (user, idPost) => {
-        const postDelete = delete user.posts.filter(post => {
+        const postDelete = delete user.encuestas.filter(post => {
             if(post._id.toString() === idPost){
                 delete post
             }
@@ -33,7 +33,7 @@ module.exports = {
     return postDelete
     },
     patch: (user, idPost, body) => {
-        const updatePosts = user.posts.map(post => {
+        const updatePosts = user.encuestas.map(post => {
             if(post._id.toString() === idPost){
                 const update = Object.assign(post, body) //<== El assign sirve para actulizar los datos
                 return update

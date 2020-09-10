@@ -62,13 +62,16 @@ module.exports = {
         const user = await UserService.findByEmail(email)
         // Si el usuario existe mandamos un mensaje de error
         if (user) res.status(401).json({ message: "El usuario ya existe"})
+
         // En caso de no existir lo va a crear 
         const userNew = await UserService.signup(req.body)
-        console.log(userNew)
+        if(!userNew) res.status(404).json({ message: 'Error en el body'})
+
         userNew.password = undefined
+
         res.status(200).json(userNew)
         } catch (error) {
-            res.status(404).json(console.log(error))
+            res.status(404).json(error)
         }
     },
     login: async (req, res) => {
