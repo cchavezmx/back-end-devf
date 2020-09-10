@@ -3,13 +3,13 @@ const NODE_ENV = process.env.NODE_ENV || 'staging'
 
 const config = {
     production: {
-        MONGO_URI: `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/produccion?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority`        
+        MONGO_URI: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/produccion?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority`        
     },
     staging: {
-        MONGO_URI: `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/staging?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority`    
+        MONGO_URI: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/staging?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority`    
     },
     test: {
-        MONGO_URI: `mongodb://${MONGO_USER}:${MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/test?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority` 
+        MONGO_URI: `mongodb://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0-shard-00-00.oemvf.azure.mongodb.net:27017,cluster0-shard-00-01.oemvf.azure.mongodb.net:27017,cluster0-shard-00-02.oemvf.azure.mongodb.net:27017/test?ssl=true&replicaSet=atlas-ndjr5a-shard-0&authSource=admin&retryWrites=true&w=majority` 
     },
 }
 
