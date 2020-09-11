@@ -1,7 +1,5 @@
 const { Poll } = require('../models')
 
-
-
 module.exports = {
     create: (body) => {
         const poll = new Poll(body)
@@ -17,8 +15,7 @@ module.exports = {
         return pollById
         }else {
             return false
-        }
-        
+        }      
     }, 
     patch: (user, idPoll, body) => {
         const updatePoll = user.polls.map(poll => {
@@ -31,6 +28,4 @@ module.exports = {
         user.polls = updatePoll
         return user.save()
     }
-    
-
 }

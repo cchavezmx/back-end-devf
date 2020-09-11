@@ -12,6 +12,10 @@ const pollSchema = new Schema({
         type:Boolean,
         default: true, 
         },
+        title: {
+            type: String,
+            required: true,
+        },
         pregunta1: {
             type: String,
             trim: true,
