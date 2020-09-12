@@ -5,6 +5,7 @@ const { celebrate, Joi, Segments } = require('celebrate')
 module.exports = {
     create: celebrate ({
         [Segments.BODY]: Joi.object().keys({
+            title: Joi.string().required(),
             pregunta1: Joi.string(),
             pregunta2: Joi.string(),
             pregunta3: Joi.string(),
