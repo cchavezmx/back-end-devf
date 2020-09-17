@@ -1,6 +1,7 @@
 const express = require('express')
 const morgan = require('morgan')
-const PORT = process.env.PORT  || 3000
+const cors = require('cors')
+const PORT = process.env.PORT  || 4000
 const app = express()
 const { showDate } =require('../middlewares')
 
@@ -10,6 +11,7 @@ const { errors } =require('celebrate')
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms'));
 
 // Pasamos los midelware
+app.use(cors()) // Con cors podemos asegurar que direcciones estan autorizadas para poder hacer la peticion a nuestro servidor 
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json({extended: true}))
 app.use(showDate)
