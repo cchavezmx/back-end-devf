@@ -8,10 +8,10 @@ module.exports = {
     try {
         // validar Usuario
         const userExist = await UserService.findByEmail(email)
-        if(userExist) res.status(401).json({message: "El usuario ya existe"})
-
-        // si no existe continua con esta parte  
-        const newUser = await UserService.create(req.body)
+        
+        userExist === true
+            ? res.status(409).json({message: "El usuario ya existe"})
+            : await UserService.create(req.body)
         res.status(201).json(newUser)
     } catch (err) {
         console.log(err)
@@ -39,9 +39,11 @@ module.exports = {
         try {
             // 1) Verificamos si existe el id
             const user = await UserService.getByID(req.params.id)             
-            if(!user) res.status(404).json({ message: "El usario no existe"})
+            !user 
+                ? res.status(404).json({ message: "El usario no existe"})
+                : await UserService.patch(user, req.body)
             // 2) Pasamos el usuario a la funcion patch
-            const userPatch = await UserService.patch(user, req.body)
+
             res.status(200).json(userPatch)
         } catch (error) {
             res.status(401).json(console.log(error))
@@ -61,15 +63,16 @@ module.exports = {
         //1) verificar que no exista el usuario
         const user = await UserService.findByEmail(email)
         // Si el usuario existe mandamos un mensaje de error
-        if (user) res.status(401).json({ message: "El usuario ya existe"})
-
+        if (user){
+            res.status(405).json({ message: "El usuario ya existe"})
+        }else{
         // En caso de no existir lo va a crear 
         const userNew = await UserService.signup(req.body)
         if(!userNew) res.status(404).json({ message: 'Error en el body'})
-
         userNew.password = undefined
+        res.status(200).json(userNew) 
+        }
 
-        res.status(200).json(userNew)
         } catch (error) {
             res.status(404).json(error)
         }
@@ -82,7 +85,7 @@ module.exports = {
         const user = await UserService.findByEmail(email)
         
         // Si el usuario no existe, mandamos un error
-        if(!user) res.status(404).json({ message: 'Error en las credenciales' })
+        if(!user) res.status(409).json({ message: 'Error en las credenciales' })
 
         // verificamos la contraseña
         const isValid =  comparePassword(user.password, password)
@@ -94,8 +97,6 @@ module.exports = {
         if(!token) res.status(500).json({message: 'Error al generar token'})
 
         //verificamos que el token sea real
-
-
         // Si el las credenciales son correctas y se genero el token, entonces damos entrada.
         res.status(201).json({ message: 'Login successful', token: token })
 
