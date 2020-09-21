@@ -7,11 +7,12 @@ router.use(express.json({ extended: true }));
 
 const { UserValidator } = require('../validators')
 const { UserController } = require('../controller/')
+const { verifyToken } = require('../middlewares')
 
 //TODO TERMINAR LOS VALIDADORES
 
 // Vista de Rutas
-router.get('/api/v1/user/', UserController.get)
+router.get('/api/v1/user/', verifyToken, UserController.get)
 router.post('/api/v1/user/', UserValidator.create, UserController.create) // validamos que el correo sea un correo correcto, con usuario y dominio 
 router.get('/api/v1/user/:id', UserValidator.getById, UserController.getByID)
 router.patch('/api/v1/user/:id', UserValidator.patch, UserController.patch)
